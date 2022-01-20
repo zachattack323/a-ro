@@ -14,6 +14,7 @@
 		DA13E53E279A0AA8007B4121 /* a_roTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13E53D279A0AA8007B4121 /* a_roTests.swift */; };
 		DA13E548279A0AA8007B4121 /* a_roUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13E547279A0AA8007B4121 /* a_roUITests.swift */; };
 		DA13E54A279A0AA8007B4121 /* a_roUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13E549279A0AA8007B4121 /* a_roUITestsLaunchTests.swift */; };
+		DA13E557279A0AB6007B4121 /* webView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13E556279A0AB6007B4121 /* webView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		DA13E543279A0AA8007B4121 /* āroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "āroUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA13E547279A0AA8007B4121 /* a_roUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = a_roUITests.swift; sourceTree = "<group>"; };
 		DA13E549279A0AA8007B4121 /* a_roUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = a_roUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DA13E556279A0AB6007B4121 /* webView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				DA13E52B279A0AA7007B4121 /* a_roApp.swift */,
 				DA13E52D279A0AA7007B4121 /* ContentView.swift */,
+				DA13E556279A0AB6007B4121 /* webView.swift */,
 				DA13E52F279A0AA8007B4121 /* Assets.xcassets */,
 				DA13E534279A0AA8007B4121 /* a_ro.entitlements */,
 				DA13E531279A0AA8007B4121 /* Preview Content */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA13E52E279A0AA7007B4121 /* ContentView.swift in Sources */,
+				DA13E557279A0AB6007B4121 /* webView.swift in Sources */,
 				DA13E52C279A0AA7007B4121 /* a_roApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
