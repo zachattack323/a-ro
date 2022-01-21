@@ -12,6 +12,6 @@ struct a_roApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-        }
+        }.windowStyle(HiddenTitleBarWindowStyle())
     }
 }

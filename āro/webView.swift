@@ -12,12 +12,12 @@ import SwiftUI
 import Combine
 
 
-
 struct WebView: NSViewRepresentable {
     typealias NSViewType = WKWebView
 
     let webView: WKWebView
-    
+//    webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+
     func makeNSView(context: Context) -> WKWebView {
         return webView
     }
@@ -35,6 +35,7 @@ class WebViewNavigationDelegate: NSObject, WKNavigationDelegate {
         // TODO
         decisionHandler(.allow)
     }
+    
 }
 
 class WebViewModel: ObservableObject {
@@ -74,17 +75,54 @@ class WebViewModel: ObservableObject {
         webView.publisher(for: \.url!)
             .assign(to: &$urlMain)
         }
-        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+
+        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 12_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Safari/605.1.15"
 
     }
     
     func loadUrl() {
+        if urlString.starts(with: "https://"){
+            guard let url = URL(string: urlString) else {
+                return
+            }
+            
+            webView.load(URLRequest(url: url))
+        } else if urlString.contains(" "){
+            let newString = urlString.replacingOccurrences(of: " ", with: "+")
+
+            urlString = "https://www.google.com/search?q=" + newString
+            guard let url = URL(string: urlString) else {
+                return
+            }
+            
+            webView.load(URLRequest(url: url))
+        } else if urlString.isValidURL {
+            let newString = "https://" + urlString
+            guard let url = URL(string: newString) else {
+                return
+            }
+            
+            webView.load(URLRequest(url: url))
+        } else {
+            let newString = urlString.replacingOccurrences(of: " ", with: "+")
+
+            urlString = "https://www.google.com/search?q=" + newString
+            guard let url = URL(string: urlString) else {
+                return
+            }
+            webView.load(URLRequest(url: url))
+
+        }
+        
+        /*
         guard let url = URL(string: urlString) else {
             return
         }
         
         webView.load(URLRequest(url: url))
+         */
     }
+
     
     func goForward() {
         webView.goForward()
@@ -99,3 +137,14 @@ class WebViewModel: ObservableObject {
     
 }
 
+extension String {
+    var isValidURL: Bool {
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
+            // it is a link, if the match covers the whole string
+            return match.range.length == self.utf16.count
+        } else {
+            return false
+        }
+    }
+}
